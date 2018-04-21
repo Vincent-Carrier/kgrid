@@ -1,0 +1,9 @@
+
+plugins {
+    id "com.jfrog.bintray" version "1.7.3"
+}
+
+bintray {
+    user = 'vincent-carrier'
+    bintray_key = 'BINTRAY_KEY'
+}

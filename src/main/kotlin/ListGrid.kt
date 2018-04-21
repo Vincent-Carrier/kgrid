@@ -1,22 +1,22 @@
 
-open class ListGrid<E>(protected val grid: MutableList<MutableList<E>>) : BaseGrid<E>() {
+open class ListGrid<E>(protected val list: MutableList<MutableList<E>>) : BaseGrid<E>() {
 	init {
-		require(grid.all { row -> row.size == grid.first().size }) {
+		require(list.all { row -> row.size == list.first().size }) {
 			"Grid must be a rectangle"
 		}
 	}
 
-	final override val height = grid.size
+	final override val height = list.size
 
-	final override val width = grid.first().size
+	final override val width = list.first().size
 
-	override fun get(x: Int, y: Int) = grid[y][x]
+	override fun get(x: Int, y: Int) = list[y][x]
 }
 
 fun <E> List<List<E>>.toListGrid(): ListGrid<E> {
 	return ListGrid(map { it.toMutableList() }.toMutableList())
 }
 
-fun <E> String.toListGrid(toValue: (Char) -> E): ListGrid<E> {
+inline fun <E> String.toListGrid(toValue: (Char) -> E): ListGrid<E> {
 	return toMutableListGrid { toValue(it) }
 }

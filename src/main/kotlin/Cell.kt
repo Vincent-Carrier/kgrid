@@ -4,10 +4,6 @@ data class Cell(val x: Int, val y: Int)
 
 operator fun <E> Grid<E>.get(c: Cell): E = get(c.x, c.y)
 
-fun <E> Grid<E>.adjacent(c: Cell): List<Cell> {
-	return adjacent(c.x, c.y)
-}
-
 operator fun <E> MutableGrid<E>.set(c: Cell, value: E) {
 	set(c.x, c.y, value)
 }
@@ -18,4 +14,14 @@ fun <E> MutableGrid<E>.swap(x1: Int, y1: Int, c2: Cell) {
 
 fun <E> MutableGrid<E>.swap(c1: Cell, c2: Cell) {
 	swap(c1.x, c1.y, c2)
+}
+
+fun <E> Grid<E>.orthogonallyAdjacent(c: Cell) = orthogonallyAdjacent(c.x, c.y)
+
+fun <E> Grid<E>.adjacent(c : Cell): List<Cell> = adjacent(c.x, c.y)
+
+object Grids {
+	fun <E> adjacent(x: Int, y: Int, grid: Grid<E>) {
+		println()
+	}
 }

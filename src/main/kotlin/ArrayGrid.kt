@@ -1,28 +1,28 @@
 
-open class ArrayGrid<E>(protected val grid: Array<E>, final override val width: Int)
+open class ArrayGrid<E>(protected val array: Array<E>, final override val width: Int)
 	: BaseGrid<E>() {
 
-	override fun get(x: Int, y: Int) = grid[y * width + x]
+	final override fun get(x: Int, y: Int) = array[y * width + x]
 
-	final override val height = grid.size / width
+	final override val height = array.size / width
 }
 
 open class MutableArrayGrid<E>(grid: Array<E>, width: Int)
 	: ArrayGrid<E>(grid, width), MutableGrid<E> {
+
 	override fun set(x: Int, y: Int, value: E) {
-		grid[y * width + x] = value
+		array[y * width + x] = value
 	}
 }
 
 inline fun <reified E> String.toMutableArrayGrid(toValue: (Char) -> E)
 		: MutableArrayGrid<E> {
 
-	val s = this.trimMargin().filter { it != '\n' }
-	val array = Array(s.length) { i ->
-		toValue(s[i])
-	}
+	val s = trimMargin().filter { it != '\n' }
+	val array = Array(s.length) { i -> toValue(s[i]) 	}
+	val width = trimMargin().lines().first().length
 
-	return MutableArrayGrid(array, trimMargin().lines().first().length)
+	return MutableArrayGrid(array, width)
 }
 
 inline fun <reified E> String.toArrayGrid(toValue: (Char) -> E): ArrayGrid<E> {
