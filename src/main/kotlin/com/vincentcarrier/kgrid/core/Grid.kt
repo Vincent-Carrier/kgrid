@@ -22,6 +22,14 @@ operator fun <E> Grid<E>.component1() = width
 
 operator fun <E> Grid<E>.component2() = height
 
+inline fun <E> Grid<E>.forEach(func: (x: Int, y: Int, E) -> Unit) {
+	for (y in rows) {
+		for (x in columns) {
+			func(x, y, get(x, y))
+		}
+	}
+}
+
 fun <E> Grid<E>.orthogonallyAdjacent(x: Int, y: Int): List<Cell> {
 	val above = if (y > 0) Cell(x, y - 1) else null
 	val below = if (y < height - 1) Cell(x, y + 1) else null
