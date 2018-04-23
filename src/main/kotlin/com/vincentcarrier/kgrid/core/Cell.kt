@@ -1,6 +1,8 @@
+package com.vincentcarrier.kgrid.core
 
 /** Defines a 2D location within a grid */
 data class Cell(val x: Int, val y: Int)
+
 
 operator fun <E> Grid<E>.get(c: Cell): E = get(c.x, c.y)
 
@@ -16,12 +18,8 @@ fun <E> MutableGrid<E>.swap(c1: Cell, c2: Cell) {
 	swap(c1.x, c1.y, c2)
 }
 
+fun <E> Cell.isWithin(grid: BaseGrid<E>) = x in grid.columns && y in grid.rows
+
 fun <E> Grid<E>.orthogonallyAdjacent(c: Cell) = orthogonallyAdjacent(c.x, c.y)
 
 fun <E> Grid<E>.adjacent(c : Cell): List<Cell> = adjacent(c.x, c.y)
-
-object Grids {
-	fun <E> adjacent(x: Int, y: Int, grid: Grid<E>) {
-		println()
-	}
-}

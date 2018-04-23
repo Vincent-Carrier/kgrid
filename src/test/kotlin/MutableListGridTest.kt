@@ -1,3 +1,7 @@
+import com.vincentcarrier.kgrid.core.component1
+import com.vincentcarrier.kgrid.core.component2
+import com.vincentcarrier.kgrid.core.swap
+import com.vincentcarrier.kgrid.implementations.toMutableListGrid
 import org.junit.Assert.assertEquals
 import org.junit.Test
 

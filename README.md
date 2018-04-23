@@ -40,7 +40,7 @@ class MutableArrayGridTest {
 }
 </pre>
 
-The library is built around the `Grid<E>` interface
+The library is built around the `kgrid.Grid<E>` interface
 ```
 interface Grid<out E> {
     val width: Int
@@ -50,7 +50,7 @@ interface Grid<out E> {
     operator fun get(x: Int, y: Int): E
 }
 ```
-and its mutable version,  `MutableGrid<E>`
+and its mutable version,  `kgrid.MutableGrid<E>`
 ```
 interface MutableGrid<E> : Grid<E> {
     operator fun set(x: Int, y: Int, value: E)
@@ -58,5 +58,5 @@ interface MutableGrid<E> : Grid<E> {
 ```
 
 The library provides the following implementations:
-* `ArrayGrid<E>` and `MutableArrayGrid<E>`, backed by a single array
-* `ListGrid<E>` and `MutableListGrid<E>`, backed by a list of lists
+* `kgrid.ArrayGrid<E>` and `kgrid.MutableArrayGrid<E>`, backed by a single array
+* `kgrid.ListGrid<E>` and `kgrid.MutableListGrid<E>`, backed by a list of lists

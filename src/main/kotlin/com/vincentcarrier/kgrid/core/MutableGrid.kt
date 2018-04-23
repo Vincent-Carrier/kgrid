@@ -1,3 +1,5 @@
+package com.vincentcarrier.kgrid.core
+
 
 interface MutableGrid<E> : Grid<E> {
 	operator fun set(x: Int, y: Int, value: E)

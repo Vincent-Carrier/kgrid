@@ -1,3 +1,5 @@
+package com.vincentcarrier.kgrid.core
+
 
 abstract class BaseGrid<out E> : Grid<E> {
 	val rows by lazy { 0 until height }
@@ -7,8 +9,7 @@ abstract class BaseGrid<out E> : Grid<E> {
 	open val Cell.value: E
 		get() = get(x, y)
 
-	val Cell.isWithinGrid: Boolean
-		get() = x in columns && y in rows
+	fun Cell.isWithinGrid() = x in columns && y in rows
 
 	inline fun forEach(func: (x: Int, y: Int, E) -> Unit) {
 		for (y in rows) {
@@ -18,7 +19,7 @@ abstract class BaseGrid<out E> : Grid<E> {
 		}
 	}
 
-	inline fun <E> Grid<E>.toString(toChar: (E) -> Char?): String {
+	inline fun toString(toChar: (E) -> Char?): String {
 		return with(StringBuilder()) {
 			for (y in rows) {
 				if (y != 0) append('\n')

@@ -1,8 +1,19 @@
+package com.vincentcarrier.kgrid.implementations
+
+import com.vincentcarrier.kgrid.core.BaseGrid
+import com.vincentcarrier.kgrid.core.MutableGrid
 
 open class ArrayGrid<E>(protected val array: Array<E>, final override val width: Int)
 	: BaseGrid<E>() {
 
-	final override fun get(x: Int, y: Int) = array[y * width + x]
+	init {
+		require(array.size % width == 0) {
+			"Grid must be a rectangle but array of size ${array.size} " +
+					"wasn't divisible by width $width"
+		}
+	}
+
+	override fun get(x: Int, y: Int) = array[y * width + x]
 
 	final override val height = array.size / width
 }

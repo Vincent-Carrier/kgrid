@@ -1,8 +1,11 @@
+package com.vincentcarrier.kgrid.implementations
+
+import com.vincentcarrier.kgrid.core.BaseGrid
 
 open class ListGrid<E>(protected val list: MutableList<MutableList<E>>) : BaseGrid<E>() {
 	init {
 		require(list.all { row -> row.size == list.first().size }) {
-			"Grid must be a rectangle"
+			"Grid must be a rectangle but rows were of differing sizes"
 		}
 	}
 

@@ -1,3 +1,8 @@
+package com.vincentcarrier.kgrid.implementations
+
+import com.vincentcarrier.kgrid.core.Cell
+import com.vincentcarrier.kgrid.core.Grid
+import com.vincentcarrier.kgrid.core.MutableGrid
 
 open class MutableListGrid<E>(grid: MutableList<MutableList<E>>)
 	: ListGrid<E>(grid), MutableGrid<E> {

@@ -8,9 +8,9 @@ buildscript {
     }
 }
 
-plugins {
-    id "com.jfrog.bintray" version "1.7.3"
-}
+//plugins {
+//    id "com.jfrog.bintray" version "1.7.3"
+//}
 
 apply plugin: 'kotlin'
 
@@ -36,4 +36,4 @@ compileTestKotlin {
     }
 }
 
-apply from: 'deploy.gradle'
+//apply from: 'deploy.gradle'

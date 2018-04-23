@@ -1,3 +1,4 @@
+package com.vincentcarrier.kgrid.core
 
 
 fun <E> Grid<E>.column(x: Int): Iterable<Cell> {
@@ -26,7 +27,7 @@ fun <E> Grid<E>.row(y: Int): Iterable<Cell> {
 			}
 
 			override fun next(): Cell {
-				return Cell(y, i)
+				return Cell(i, y)
 			}
 		}
 	}

@@ -1,6 +1,10 @@
 import PieceColor.BLACK
 import PieceColor.WHITE
 import PieceType.PAWN
+import com.vincentcarrier.kgrid.core.Cell
+import com.vincentcarrier.kgrid.core.get
+import com.vincentcarrier.kgrid.core.swap
+import com.vincentcarrier.kgrid.implementations.toMutableArrayGrid
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
@@ -28,8 +32,10 @@ fun ChessPiece?.toChar(): Char {
 	return this?.type?.char.also { if (this?.color == BLACK) it?.toLowerCase() } ?: '_'
 }
 
-val chessboard =
-	"""
+class MutableArrayGridTest {
+
+	val chessboard =
+		"""
   |rnbqkbnr
   |pppppppp
   |________
@@ -40,14 +46,12 @@ val chessboard =
   |RNBQKBNR
   """.toMutableArrayGrid { char -> char.toChessPiece() }
 
-class MutableArrayGridTest {
-
 	@Test fun pawnToE4() {
 		val e2 = Cell(4, 6)
 		val e4 = Cell(4, 4)
 		chessboard.swap(e2, e4)
 
-		println(chessboard.toString { piece -> piece.toChar()})
+		println(chessboard.toString { piece -> piece.toChar() })
 		assertEquals(ChessPiece(WHITE, PAWN), chessboard[e4])
 	}
 }
