@@ -4,14 +4,14 @@ Since Kotlin doesn't have collection literals (i.e. `[1, 2, 3]`), I made this sm
 and test grids. Very useful for games like chess or checkers :)
 
 <pre>
-enum class PieceType(val char: Char) {
-    KING('K'), QUEEN('Q'), ROOK('R'),
-    BISHOP('B'), KNIGHT('N'), PAWN('P')
+data class ChessPiece(val color: Color, val type: Type) {
+    enum class Color { WHITE, BLACK }
+
+    enum class Type(val char: Char) {
+        KING('K'), QUEEN('Q'), ROOK('R'),
+        BISHOP('B'), KNIGHT('N'), PAWN('P')
+    }
 }
-
-enum class PieceColor { WHITE, BLACK }
-
-data class ChessPiece(val color: PieceColor, val type: PieceType)
 
 fun Char.toChessPiece(): ChessPiece? = ...
 
@@ -30,7 +30,7 @@ class MutableArrayGridTest {
       |RNBQKBNR
       """<b>.toMutableArrayGrid { char -> char.toChessPiece() }</b>
 
-    @Test fun pawnToE4() {
+    @Test fun `pawn to e4`() {
         val e2 = <b>Cell(4, 6)</b> // A Cell is a simple, immutable data class that holds XY coordinates
         val e4 = Cell(4, 4)
         chessboard.<b>swap(e2, e4)</b>

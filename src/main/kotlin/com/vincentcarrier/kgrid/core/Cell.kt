@@ -18,7 +18,7 @@ fun <E> MutableGrid<E>.swap(c1: Cell, c2: Cell) {
 	swap(c1.x, c1.y, c2)
 }
 
-fun <E> Cell.isWithin(grid: BaseGrid<E>) = x in grid.columns && y in grid.rows
+fun <E> Cell.isWithin(grid: Grid<E>) = x in grid.columns && y in grid.rows
 
 fun <E> Grid<E>.orthogonallyAdjacent(c: Cell) = orthogonallyAdjacent(c.x, c.y)
 

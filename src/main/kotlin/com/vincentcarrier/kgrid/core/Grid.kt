@@ -6,7 +6,16 @@ interface Grid<out E> {
 
 	val height: Int
 
+	val columns: IntRange
+
+	val rows: IntRange
+
 	operator fun get(x: Int, y: Int): E
+
+	val Cell.value: E
+		get() = get(x, y)
+
+	fun Cell.isWithinGrid() = x in columns && y in rows
 }
 
 operator fun <E> Grid<E>.component1() = width
@@ -36,5 +45,16 @@ fun <E> Grid<E>.adjacent(x: Int, y: Int): List<Cell> {
 	return orthogonallyAdjacent(x, y) + diagonallyAdjacent
 }
 
+inline fun <E> Grid<E>.toString(toChar: (E) -> Char?): String {
+	return with(StringBuilder()) {
+		for (y in rows) {
+			if (y != 0) append('\n')
+			for (x in columns) {
+				append(toChar(get(x, y)) ?: '_')
+			}
+		}
+		toString()
+	}
+}
 
 

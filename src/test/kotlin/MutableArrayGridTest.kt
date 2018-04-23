@@ -1,31 +1,35 @@
-import PieceColor.BLACK
-import PieceColor.WHITE
-import PieceType.PAWN
+
+import ChessPiece.Color.BLACK
+import ChessPiece.Color.WHITE
+import ChessPiece.Type
+import ChessPiece.Type.PAWN
 import com.vincentcarrier.kgrid.core.Cell
 import com.vincentcarrier.kgrid.core.get
 import com.vincentcarrier.kgrid.core.swap
+import com.vincentcarrier.kgrid.core.toString
 import com.vincentcarrier.kgrid.implementations.toMutableArrayGrid
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
-enum class PieceType(val char: Char) {
-	KING('K'), QUEEN('Q'), ROOK('R'),
-	BISHOP('B'), KNIGHT('N'), PAWN('P')
+
+data class ChessPiece(val color: Color, val type: Type) {
+	enum class Color { WHITE, BLACK }
+
+	enum class Type(val char: Char) {
+		KING('K'), QUEEN('Q'), ROOK('R'),
+		BISHOP('B'), KNIGHT('N'), PAWN('P')
+	}
 }
 
-enum class PieceColor { WHITE, BLACK }
-
-data class ChessPiece(val color: PieceColor, val type: PieceType)
-
 fun Char.toChessPiece(): ChessPiece? {
-	val type = PieceType.values().find { toUpperCase() == it.char }
+	val type = Type.values().find { toUpperCase() == it.char }
 	val color = when {
 		isUpperCase() -> WHITE
 		isLowerCase() -> BLACK
 		else -> null
 	}
 
-	return if (type != null && color != null) { ChessPiece(color, type) } else null
+	return if (color != null) { ChessPiece(color, type!!) } else null
 }
 
 fun ChessPiece?.toChar(): Char {
@@ -46,7 +50,7 @@ class MutableArrayGridTest {
   |RNBQKBNR
   """.toMutableArrayGrid { char -> char.toChessPiece() }
 
-	@Test fun pawnToE4() {
+	@Test fun `pawn to e4`() {
 		val e2 = Cell(4, 6)
 		val e4 = Cell(4, 4)
 		chessboard.swap(e2, e4)
