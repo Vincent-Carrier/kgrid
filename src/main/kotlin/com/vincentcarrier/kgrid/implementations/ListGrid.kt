@@ -9,9 +9,9 @@ open class ListGrid<E>(protected val list: MutableList<MutableList<E>>) : BaseGr
 		}
 	}
 
-	final override val height = list.size
-
 	final override val width = list.first().size
+
+	final override val height = list.size
 
 	override fun get(x: Int, y: Int) = list[y][x]
 }

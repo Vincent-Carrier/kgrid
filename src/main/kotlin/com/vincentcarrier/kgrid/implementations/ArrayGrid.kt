@@ -13,9 +13,9 @@ open class ArrayGrid<E>(protected val array: Array<E>, final override val width:
 		}
 	}
 
-	override fun get(x: Int, y: Int) = array[y * width + x]
-
 	final override val height = array.size / width
+
+	override fun get(x: Int, y: Int) = array[y * width + x]
 }
 
 open class MutableArrayGrid<E>(grid: Array<E>, width: Int)
