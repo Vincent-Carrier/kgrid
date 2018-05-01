@@ -1,7 +1,12 @@
 # kgrid
 
 Since Kotlin doesn't have collection literals (i.e. `[1, 2, 3]`), I made this small library to make it easier to work with
-and test grids. Very useful for games like chess or checkers :)
+and test grids. Very useful for games like chess or checkers 😁
+
+### Download
+`implementation 'com.vincentcarrier:kotlingrid:1.0.0'`
+
+### Example
 
 <pre>
 data class ChessPiece(val color: Color, val type: Type) {
@@ -16,8 +21,9 @@ data class ChessPiece(val color: Color, val type: Type) {
 fun Char.toChessPiece(): ChessPiece? = ...
 
 
-class MutableArrayGridTest {
+class ChessboardTest {
 
+    // Triple quotes and pipes are important here to trim out white space
     val chessboard =
       """
       |rnbqkbnr
@@ -28,7 +34,7 @@ class MutableArrayGridTest {
       |________
       |PPPPPPPP
       |RNBQKBNR
-      """<b>.toMutableArrayGrid { char -> char.toChessPiece() }</b>
+      """<b>.toMutableGrid { char -> char.toChessPiece() }</b>
 
     @Test fun `pawn to e4`() {
         val e2 = <b>Cell(4, 6)</b> // A Cell is a simple, immutable data class that holds XY coordinates
@@ -40,7 +46,9 @@ class MutableArrayGridTest {
 }
 </pre>
 
-The library is built around the `kgrid.Grid<E>` interface
+### How it works
+
+The library is built around the `Grid<E>` interface
 ```
 interface Grid<out E> {
     val width: Int
@@ -50,7 +58,7 @@ interface Grid<out E> {
     operator fun get(x: Int, y: Int): E
 }
 ```
-and its mutable version,  `kgrid.MutableGrid<E>`
+and its mutable version,  `MutableGrid<E>`
 ```
 interface MutableGrid<E> : Grid<E> {
     operator fun set(x: Int, y: Int, value: E)
@@ -58,5 +66,5 @@ interface MutableGrid<E> : Grid<E> {
 ```
 
 The library provides the following implementations:
-* `kgrid.ArrayGrid<E>` and `kgrid.MutableArrayGrid<E>`, backed by a single array
-* `kgrid.ListGrid<E>` and `kgrid.MutableListGrid<E>`, backed by a list of lists
+* `ArrayGrid<E>` and `MutableArrayGrid<E>`, backed by a single array
+* `ListGrid<E>` and `MutableListGrid<E>`, backed by a list of lists
