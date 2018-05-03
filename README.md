@@ -4,7 +4,7 @@ Since Kotlin doesn't have collection literals (i.e. `[1, 2, 3]`), I made this sm
 and test grids. Very useful for games like chess or checkers 😁
 
 ### Download
-`implementation 'com.vincentcarrier:kotlingrid:1.0.1'`
+`implementation 'com.vincentcarrier:kgrid:1.0.1'`
 
 ### Example
 
