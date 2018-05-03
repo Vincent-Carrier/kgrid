@@ -1,9 +1,31 @@
-
-plugins {
-    id "com.jfrog.bintray" version "1.7.3"
-}
+apply plugin: 'maven'
+apply plugin: 'maven-publish'
 
 bintray {
     user = 'vincent-carrier'
-    bintray_key = 'BINTRAY_KEY'
+    key = System.getenv('BINTRAY_KEY')
+    configurations = ['archives']
+    publish = true
+    override = true
+    pkg {
+        repo = 'maven'
+        name = 'kgrid'
+        licenses = ['MIT']
+        vcsUrl = 'https://github.com/bintray/gradle-bintray-plugin.git'
+        version {
+            name = this.version
+            released  = new Date()
+        }
+    }
+}
+
+project.publishing {
+    publications {
+        DefaultPublication(MavenPublication) {
+            from components.java
+            groupId this.group
+            artifactId 'kgrid'
+            version this.version
+        }
+    }
 }

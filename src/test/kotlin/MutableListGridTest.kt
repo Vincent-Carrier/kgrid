@@ -43,4 +43,10 @@ class MutableListGridTest {
 		assertEquals('b', grid[0, 0])
 		assertEquals('a', grid[1, 0])
 	}
+
+	@Test fun iterator() {
+		for (triplet in grid) {
+			println(triplet)
+		}
+	}
 }
